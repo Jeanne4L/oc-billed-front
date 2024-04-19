@@ -45,7 +45,7 @@ export default class {
 						try {
 							return {
 								...doc,
-								date: formatDate(doc.date),
+								date: doc.date,
 								status: formatStatus(doc.status),
 							}
 						} catch (e) {
@@ -59,14 +59,8 @@ export default class {
 							}
 						}
 					})
-					bills.forEach((bill) => console.log(new Date(bill.date)))
-					const sortedBills = bills.sort(
-						(a, b) => new Date(b.date) - new Date(a.date)
-					)
-
-					return sortedBills
+					return bills
 				})
 		}
 	}
 }
-// bills.sort((a, b) => new Date(b.date) - new Date(a.date))
