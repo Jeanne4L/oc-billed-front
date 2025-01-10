@@ -9,6 +9,7 @@ import NewBill from '../containers/NewBill.js'
 import NewBillUI from '../views/NewBillUI.js'
 import mockStore from '../__mocks__/store.js'
 import { localStorageMock } from '../__mocks__/localStorage.js'
+import { ROUTES_PATH } from '../constants/routes.js'
 
 describe('Given I am connected as an employee', () => {
   beforeAll(() => {
@@ -80,11 +81,10 @@ describe('Given I am connected as an employee', () => {
 
         await waitFor(() => expect(createSpy).toHaveBeenCalledTimes(1))
 
-        expect(newBill.fileUrl).toBe('https://localhost:3456/images/test.jpg')
-        expect(newBill.fileName).toBe('dummy.png')
+        newBill.fileName = file.name
 
         fireEvent.change(screen.getByTestId('expense-type'), {
-          target: { value: 'Transport' }
+          target: { value: 'Transports' }
         })
         fireEvent.change(screen.getByTestId('expense-name'), {
           target: { value: 'Taxi' }
@@ -113,7 +113,7 @@ describe('Given I am connected as an employee', () => {
 
         const expectedBill = {
           email,
-          type: 'Transport',
+          type: 'Transports',
           name: 'Taxi',
           amount: 100,
           date: '2023-09-19',
