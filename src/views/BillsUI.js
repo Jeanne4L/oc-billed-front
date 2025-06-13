@@ -1,7 +1,7 @@
+import { formatDate } from '../app/format.js'
 import VerticalLayout from './VerticalLayout.js'
 import ErrorPage from './ErrorPage.js'
 import LoadingPage from './LoadingPage.js'
-
 import Actions from './Actions.js'
 
 const row = (bill) => {
@@ -21,7 +21,9 @@ const row = (bill) => {
 
 const rows = (data) => {
 	if (data && data.length) {
-		const sortedBills = data.sort((a, b) => new Date(b.date) - new Date(a.date))
+		const sortedBills = data
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map((bill) => ({...bill, date: formatDate(bill.date)}))
 
 		return sortedBills.map((bill) => row(bill)).join('')
 	}
