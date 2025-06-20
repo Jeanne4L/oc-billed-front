@@ -21,10 +21,8 @@ const row = (bill) => {
 
 const rows = (data) => {
 	if (data && data.length) {
-		const sortedBills = data
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .map((bill) => ({...bill, date: formatDate(bill.date)}))
-
+		const sortedBills = data.sort((a, b) => new Date(b.date) - new Date(a.date))
+    
 		return sortedBills.map((bill) => row(bill)).join('')
 	}
 }
