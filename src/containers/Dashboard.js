@@ -84,11 +84,10 @@ export default class {
 
 	handleClickIconEye = () => {
 		const billUrl = $('#icon-eye-d').attr('data-bill-url')
-		const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
 		$('#modaleFileAdmin1')
 			.find('.modal-body')
 			.html(
-				`<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} alt="Bill"/></div>`
+				`<div style='text-align: center;'><img style='width: 100%; max-width: max-content; object-fit: contain;' src=${billUrl} alt="Bill"/></div>`
 			)
 		if (typeof $('#modaleFileAdmin1').modal === 'function')
 			$('#modaleFileAdmin1').modal('show')
