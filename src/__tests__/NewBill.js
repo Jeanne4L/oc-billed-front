@@ -38,9 +38,9 @@ describe('Given I am connected as an employee', () => {
     })
 
     describe('When I import a file', () => {
-      test('It should be an image', () => {
-        const file = new File(['dummy content'], 'dummy.png', {
-          type: 'image/png',
+      test('It is rejected if it is not an image', () => {
+        const file = new File(['dummy content'], 'dummy.pdf', {
+          type: 'application/pdf',
         })
         const fileInput = screen.getByTestId('file')
 
@@ -50,7 +50,7 @@ describe('Given I am connected as an employee', () => {
 					},
         })
 
-        expect(fileInput.files[0].type).toBe('image/png')
+        expect(fileInput.value).toBe('')
       })
     })
 
