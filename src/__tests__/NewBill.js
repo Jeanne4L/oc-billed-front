@@ -38,7 +38,9 @@ describe('Given I am connected as an employee', () => {
     })
 
     describe('When I import a file', () => {
-      test('It is rejected if it is not an image', () => {
+      test('It is rejected if it is not an image', async () => {
+        const createSpy = jest.spyOn(mockStore, 'bills')
+
         const file = new File(['dummy content'], 'dummy.pdf', {
           type: 'application/pdf',
         })
@@ -51,6 +53,7 @@ describe('Given I am connected as an employee', () => {
         })
 
         expect(fileInput.value).toBe('')
+        await waitFor(() => expect(createSpy).not.toHaveBeenCalled())
       })
     })
 
