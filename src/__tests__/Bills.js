@@ -84,6 +84,19 @@ describe('Given I am connected as an employee', () => {
 			expect(message).toBeTruthy()
 		})
 
+		test('should display 500 error on server failure', async () => {
+			billsSpy.mockImplementationOnce(() => ({
+				list() {
+					return Promise.reject('Erreur 500')
+				},
+			}))
+
+			window.onNavigate(ROUTES_PATH.Bills)
+
+			const message = await waitFor(() => screen.getByText(/Erreur 500/))
+			expect(message).toBeTruthy()
+		})
+
 		test('the click on the eye icon opens a modal', async () => {
 			billsSpy.mockImplementationOnce(mockStore.bills)
 
